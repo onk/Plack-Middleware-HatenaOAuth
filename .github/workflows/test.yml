@@ -21,6 +21,8 @@ jobs:
         run: perl -V
       - name: Install minilla
         run: cpanm -n Minilla
+      - name: Preinstall OAuth::Lite without tests # workaround for OpenSSL 3 issues
+        run: cpanm -n --notest OAuth::Lite::Consumer
       - name: Mark workspace as safe for git
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - name: minil test
